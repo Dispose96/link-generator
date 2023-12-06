@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Generator</title>
+
+    <style>     
+        @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700&display=swap');
+
+        body{
+            background-color: gray;
+            font-family: 'Dosis', sans-serif;
+        }
+        .company{
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .one-line{
+            display: block;
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- INPUT -->
+<div>
+    <label>Company Code</label>
+    <input id="company-code" type="text">        
+</div>
+
+<div>
+    <label>Version</label>
+    <input id="version" type="text">
+    
+</div>
+
+<div>
+    <label >Solution ID</label>
+    <input id="solution-id" type="number">
+</div>
+
+
+<!-- TOOLS CHECKBOX -->
+<h3>Tools Checkbox</h3>
+<div>
+    <input id="SG"  data-check='false' type="checkbox" onclick="isChecked(this)">
+    <label>SG</label>
+</div>
+
+<div>
+    <input id="SC" data-link="subscriptioncenter2"  data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    <label>SC</label>
+</div>
+
+<div>
+    <input id="SPL" data-link="splookup"  data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    <label>SPL</label>
+</div>
+
+
+
+
+<!-- LANGUAGE CHECKBOX -->
+<h3>Lanuage Checkbox</h3>
+<div>
+    <input id="english" checked data-langcode="en-gb" data-check='false' class="languages" type="checkbox" onclick="isChecked(this)">
+    <label>English</label>
+</div>
+
+<div>
+    <input id="japanese" data-langcode="ja-jp" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    <label>Japanese</label>
+</div>
+
+<div>
+    <input id="chinese" data-langcode="zh-cn" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    <label>Chinese</label>
+</div>
+
+<br>
+
+<!-- LINK TYPE CHECKBOX -->
+<h3>Link Type Checkbox</h3>
+<div>
+    <input id="test-link" name="type-of-link" checked  class="link-type" type="radio" onclick="isChecked(this)">
+    <label>Test</label>
+</div>
+
+<div>
+    <input id="official-link" name="type-of-link"  class="link-type" type="radio" onclick="isChecked(this)">
+    <label>Official</label>
+</div>
+
+<div>
+    <input id="asia-official-link" name="type-of-link" class="link-type" type="radio" onclick="isChecked(this)">
+    <label>Official (Asia)</label>
+</div>
+
+<br>
+
+
+<!-- BUTTON -->
+<input type="button" value="Generate" id="generate-btn">
+
+
+<!-- DISPLAY -->
+<div id="display-container">
+   
+</div>
+
+</body>
+
+<script>
+    // INPUT
+    let companyCode = document.getElementById('company-code')
+    let solutionID = document.getElementById('solution-id')
+    let version = document.getElementById('version')
+
+    //SG CHECKBOX
+    let SG = document.getElementById('SG')
+
+
+    // TOOLS CHECKBOX
+
+    // BUTTON
+    let button = document.getElementById('generate-btn')
+
+    // DISPLAY
+    let output = document.getElementById('output')
+    let outputTest = document.getElementById('test-output')
+    let checkboxID = document.getElementById('checkbox-id')
+    let displayContainer = document.getElementById('display-container')
+
+    let list = document.getElementById('list')
+
+    const linkArray = []
+    const toolArray = []
+    const languageArray = ['en-gb']
+
+    let typeOFLink = 'test-link'
+
+    isCheckedArray = []
+
+    const isChecked = (e) =>{
+
+    //create a condition if check then add if uncheck then remove
+
+        // if statement to monitor if checkbox is checked or unchecked
+        if(e.getAttribute('data-check') == 'true'){
+            console.log('it is true')
+           
+            if(e.className == 'tools'){             
+                toolArray.push(e.id)
+                linkArray.push(e.getAttribute('data-link'))
+                console.log(linkArray)
+                   
+            } else if(e.className == 'languages'){
+                languageArray.push(e.getAttribute('data-langcode'))            
+            } 
+
+            e.setAttribute('data-check', 'false')
+        }else{
+            console.log('it is false')
+        
+            for(let i=0; i<linkArray.length; i++){
+                if(e.getAttribute('data-link') == linkArray[i]){
+                    linkArray.splice(i, 1)
+                }
+                
+            }
+
+            for(let i=0; i<languageArray.length; i++){
+                if(e.getAttribute('data-langcode') == languageArray[i]){
+                    languageArray.splice(i, 1)
+                }
+                
+            }
+         
+
+            e.setAttribute('data-check', 'true')
+        }
+
+       typeOFLink = e.id
+
+        console.log(typeOFLink)
+        
+    }
+
+
+
+    const generateLink = () => {
+    
+        // to clear display container for every click
+        displayContainer.innerHTML = ''
+
+        if(companyCode.value){
+
+            // for creating SG link
+            if(solutionID.value && SG.getAttribute('data-check') == 'true'){
+                let sgTitle = document.createElement('p')
+                sgTitle.innerHTML = 'SG'
+                displayContainer.appendChild(sgTitle)
+                for(let i=0; i<languageArray.length; i++){
+                    let sgDisplay = document.createElement('a')
+                    sgDisplay.innerHTML = `https://${typeOFLink == 'official-link' ? 'tools.eurolandir.com' : typeOFLink == 'asia-official-link' ? 'asia.tools.euroland.com' : 'gamma.euroland.com'}/tools/sharegraph/?s=${solutionID.value}&companycode=${companyCode.value}&lang=${languageArray[i]}`
+                    sgDisplay.setAttribute('href', sgDisplay.innerHTML)
+                    sgDisplay.setAttribute('target', '_blank')
+
+                    sgDisplay.className = 'one-line'
+
+
+                    displayContainer.appendChild(sgDisplay)
+
+                }
+            }else{
+            }
+
+
+            // for creating other Tools link
+            for(let i=0; i<linkArray.length; i++){
+            let title = document.createElement('p')
+            title.innerHTML = toolArray[i]
+            displayContainer.appendChild(title)
+
+                for(let x=0; x<languageArray.length; x++){
+
+                    
+                    let display = document.createElement('a')
+                    
+                    display.innerHTML = `https://${typeOFLink == 'official-link' ? 'tools.eurolandir.com' : typeOFLink == 'asia-official-link' ? 'asia.tools.euroland.com' : 'gamma.euroland.com'}/tools/${linkArray[i]}/?companycode=${companyCode.value}${version.value ? `&v=${version.value}` : ''}&lang=${languageArray[x]}`
+                    display.setAttribute('href', display.innerHTML)
+                    display.setAttribute('target', '_blank')
+                    displayContainer.appendChild(display)
+
+                    display.id = toolArray[i] 
+                    display.className = 'one-line'
+                  
+                }
+            
+       
+    }
+        }else{
+            alert('Must input company code')
+        }
+
+       
+        
+    
+    }
+
+    button.addEventListener('click', generateLink)
+
+
+
+
+    
+
+
+</script>
+
+</html>
+
+
+

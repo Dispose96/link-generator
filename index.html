@@ -10,108 +10,351 @@
         @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700&display=swap');
 
         body{
-            background-color: gray;
             font-family: 'Dosis', sans-serif;
+            font-size: 17px;
+            margin: 0;
+            color: #272523;
+            background-color: #b0b9b4;
+            background-color: #c0c9c4;
+            max-width: 100%;
+            
         }
-        .company{
-            color: black;
-            font-weight: bold;
-            font-size: 20px;
+
+        .main-content{
+            margin: 5px;
         }
+
+        .input-component{
+            margin-right: 10px;
+            display: inline-block;
+          
+        }
+
+        .input-container input{
+            border-radius: 5px;
+            border: solid 1px #aaa;
+            height: 18px;
+            padding: 2px 5px;
+        }
+
+        .input-container label{
+            display: block;
+        }
+
+        input[type='checkbox'], input[type='radio']{
+            width: 14px;
+            height: 14px;
+        }    
 
         .one-line{
             display: block;
-            color: gold;
+            color: rgb(48, 93, 177);
+            font-weight: 600;
+            width: fit-content;
+            font-size: 15px;
+        }
+
+        button{
+            width: 150px;
+            margin: auto;
+            
+            border-radius: 5px;
+            border: solid 1px #3f1985;
+            color: white;
+            background-color: #382b80;
+            height: 30px;
+            
+        }
+
+        button:hover{
+            cursor: pointer;
+        }
+
+        .sub-label{
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: rgb(209, 50, 50);
+         
+        }
+
+        .copy-button-hide{
+            display: none;
+        }
+
+        .header{
+            width: 100%;
+            background-color: rgb(93, 92, 156);
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .header div{
+  
+            font-weight: bold;
+            color: #d4d6ed;
+            letter-spacing: 3px;
+            margin-left: 10px;
+            
+        }
+
+        .header div:after{
+            content: '';
+            background: url(tools.png) no-repeat center center;
+            width: 22px;
+            height: 22px;
+            position: relative;
+            top: 1px;
+            left: 7px;
+            display: inline-block;
+        }
+
+        h3{
+            font-size: 19px;
+            color:rgb(12, 47, 112);
+        }
+
+        .language-container label{
+            min-width: 150px;
+            display: inline-block;
+        }
+
+        .tools-container label{
+            min-width: 75px;
+            display: inline-block;
+        }
+
+        #display-container{
+            border: solid 1px red;
+            width: fit-content;
+        }
+
+        .link-title{
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
+
+<!-- HEADER -->
+<div class="header">
+    <div>LINK GENERATOR</div>
+</div>
+
+<div class="main-content">
 <!-- INPUT -->
-<div>
-    <label>Company Code</label>
-    <input id="company-code" type="text">        
-</div>
+<div class="input-container">
 
-<div>
-    <label>Version</label>
-    <input id="version" type="text">
+    <div class="input-component">
+        <label>Company Code</label>
+        <input id="company-code" type="text">        
+    </div>
     
-</div>
-
-<div>
-    <label >Solution ID</label>
-    <input id="solution-id" type="number">
+    <div class="input-component">
+        <label>Version</label>
+        <input id="version" type="text">
+        
+    </div>
+    
+    <div class="input-component">
+        <label >Solution ID</label>
+        <input id="solution-id" type="number">
+    </div>
 </div>
 
 
 <!-- TOOLS CHECKBOX -->
-<h3>Tools Checkbox</h3>
-<div>
-    <input id="SG"  data-check='false' type="checkbox" onclick="isChecked(this)">
-    <label>SG</label>
-</div>
+<div class="tools-container">
+<h3>Tools</h3>
 
-<div>
-    <input id="SC" data-link="subscriptioncenter2"  data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
-    <label>SC</label>
-</div>
+    <label>
+    <input id="SG" data-link="sharegraph" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    SG
+    </label>
 
-<div>
-    <input id="SPL" data-link="splookup"  data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
-    <label>SPL</label>
+    <label>
+    <input id="TSR" data-link="tsr/iframe" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    TSR
+    </label>
+
+    <label>
+    <input id="CA" data-link="pressreleases" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    CA
+    </label>
+
+    <label>
+    <input id="SC" data-link="subscriptioncentre2" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    SC
+    </label>
+
+    <label>
+    <input id="SPL" data-link="splookup" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    SPL
+    </label>
+
+    <label>
+    <input id="IC" data-link="investmentcal2" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    IC
+    </label>
+
+    <label>
+    <input id="IA" data-link="ia" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    IA
+    </label>
+
+    <label>
+    <input id="SS" data-link="shareseries" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    SS
+    </label>
+
+    <label>
+    <input id="LST" data-link="lst2" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    LST
+    </label>
+
+
+    <label>
+    <input id="FC" data-link="fincalendar2" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    FC
+    </label>
+
+    <label>
+    <input id="Fragulizer" data-link="fragulizer" data-check='true' class="tools" type="checkbox" onclick="isChecked(this)">
+    Fragulizer
+    </label>
+
+          <!-- DIFFERENT LINKS
+          TICKER, FACTSHEET, BUNDLE -->
+
+    <!-- Ticker -->
+    <!-- https://gamma.euroland.com/tools/ticker/html/?companycode=[]&lang=en-gb -->
+    <!-- FACTSHEET -->
+    <!-- https://gamma.euroland.com/factsheet/companycode[]/factsheethtml.asp?lang=english  -->
+    <!-- Bundle -->
+    <!-- https://gamma.euroland.com/tools/custom/companycode[]/bundle.html?lang=en-gb  -->
+
+
+
+                 
+
+
 </div>
 
 
 
 
 <!-- LANGUAGE CHECKBOX -->
-<h3>Lanuage Checkbox</h3>
-<div>
+<div class="language-container">
+<h3>Language</h3>
+<label>
     <input id="english" checked data-langcode="en-gb" data-check='false' class="languages" type="checkbox" onclick="isChecked(this)">
-    <label>English</label>
-</div>
+    English
+    <span class="sub-label">(en-gb)</span>
+</label>
 
-<div>
+<label>
     <input id="japanese" data-langcode="ja-jp" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
-    <label>Japanese</label>
-</div>
+    Japanese
+    <span class="sub-label">(ja-jp)</span>
+</label>
 
-<div>
+<label>
     <input id="chinese" data-langcode="zh-cn" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
-    <label>Chinese</label>
-</div>
+    Chinese (S)
+    <span class="sub-label">(zh-cn)</span>
+</label>
 
+<label>
+    <input id="chinese" data-langcode="zh-tw" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Chinese (T)
+    <span class="sub-label">(zh-tw)</span>
+</label>
+
+<label>
+    <input id="korean" data-langcode="ko-kr" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Korean
+    <span class="sub-label">(ko-kr)</span>
+</label>
+
+<label>
+    <input id="arabic" data-langcode="ar-ae" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Arabic
+    <span class="sub-label">(ar-ae)</span>
+</label>
+
+<label>
+    <input id="italian" data-langcode="it-it" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Italian
+    <span class="sub-label">(it-it)</span>
+</label>
+
+<label>
+    <input id="russian" data-langcode="ru-ru" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Russian
+    <span class="sub-label">(ru-ru)</span>
+</label>
+
+<label>
+    <input id="finnish" data-langcode="fi-fi" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Finnish
+    <span class="sub-label">(fi-fi)</span>
+</label>
+
+<label>
+    <input id="spanish" data-langcode="es-es" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Spanish
+    <span class="sub-label">(es-es)</span>
+</label>
+
+<label>
+    <input id="estonian" data-langcode="et-ee" data-check='true' class="languages" type="checkbox" onclick="isChecked(this)">
+    Estonian
+    <span class="sub-label">(et-ee)</span>
+</label>
+
+
+
+
+</div>
 <br>
 
 <!-- LINK TYPE CHECKBOX -->
-<h3>Link Type Checkbox</h3>
+<h3>Link Type</h3>
 <div>
+    <label>
     <input id="test-link" name="type-of-link" checked  class="link-type" type="radio" onclick="isChecked(this)">
-    <label>Test</label>
+    Test
+    </label>
 </div>
 
 <div>
+    <label>
     <input id="official-link" name="type-of-link"  class="link-type" type="radio" onclick="isChecked(this)">
-    <label>Official</label>
+    Official
+    </label>
 </div>
 
 <div>
+    <label>
     <input id="asia-official-link" name="type-of-link" class="link-type" type="radio" onclick="isChecked(this)">
-    <label>Official (Asia)</label>
+    Official (Asia)
+    </label>
 </div>
 
 <br>
 
 
 <!-- BUTTON -->
-<input type="button" value="Generate" id="generate-btn">
+<button type="button" id="generate-btn">Generate Links</button>
 
-
-<!-- DISPLAY -->
+<!-- GENERATED DISPLAY -->
 <div id="display-container">
-   
+
 </div>
+
+</div>
+
 
 </body>
 
@@ -121,22 +364,10 @@
     let solutionID = document.getElementById('solution-id')
     let version = document.getElementById('version')
 
-    //SG CHECKBOX
-    let SG = document.getElementById('SG')
-
-
-    // TOOLS CHECKBOX
-
     // BUTTON
     let button = document.getElementById('generate-btn')
-
     // DISPLAY
-    let output = document.getElementById('output')
-    let outputTest = document.getElementById('test-output')
-    let checkboxID = document.getElementById('checkbox-id')
     let displayContainer = document.getElementById('display-container')
-
-    let list = document.getElementById('list')
 
     const linkArray = []
     const toolArray = []
@@ -144,86 +375,76 @@
 
     let typeOFLink = 'test-link'
 
-    isCheckedArray = []
-
     const isChecked = (e) =>{
-
     //create a condition if check then add if uncheck then remove
 
         // if statement to monitor if checkbox is checked or unchecked
-        if(e.getAttribute('data-check') == 'true'){
-            console.log('it is true')
-           
+        if(e.getAttribute('data-check') == 'true'){           
+            //add value to array when check
             if(e.className == 'tools'){             
                 toolArray.push(e.id)
                 linkArray.push(e.getAttribute('data-link'))
-                console.log(linkArray)
+                console.log(e.id)
                    
             } else if(e.className == 'languages'){
                 languageArray.push(e.getAttribute('data-langcode'))            
             } 
 
             e.setAttribute('data-check', 'false')
+
+        //remove value from array when uncheck
         }else{
-            console.log('it is false')
-        
+            console.log(e.id + ' is false')
+
             for(let i=0; i<linkArray.length; i++){
                 if(e.getAttribute('data-link') == linkArray[i]){
                     linkArray.splice(i, 1)
-                }
-                
-            }
-
+                }              
+            }    
+            
             for(let i=0; i<languageArray.length; i++){
                 if(e.getAttribute('data-langcode') == languageArray[i]){
                     languageArray.splice(i, 1)
-                }
-                
+                }              
             }
-         
+
+            for(let i=0; i<toolArray.length; i++){
+                if(e.id == toolArray[i]){
+                    toolArray.splice(i, 1)
+                }               
+            }                  
 
             e.setAttribute('data-check', 'true')
         }
 
-       typeOFLink = e.id
+        if(e.getAttribute('class') == 'link-type'){
+            typeOFLink = e.id
 
-        console.log(typeOFLink)
+            console.log(typeOFLink)
+        }
+
+       console.log(linkArray)
+       console.log(languageArray)
+       console.log(toolArray)
         
     }
-
-
 
     const generateLink = () => {
     
         // to clear display container for every click
         displayContainer.innerHTML = ''
 
+        //display div of link type (test, official, asia-official)
+        let linkType = document.createElement('div')
+        linkType.innerHTML = typeOFLink
+        linkType.setAttribute('class', 'link-title')
+        displayContainer.appendChild(linkType)
+
         if(companyCode.value){
 
-            // for creating SG link
-            if(solutionID.value && SG.getAttribute('data-check') == 'true'){
-                let sgTitle = document.createElement('p')
-                sgTitle.innerHTML = 'SG'
-                displayContainer.appendChild(sgTitle)
-                for(let i=0; i<languageArray.length; i++){
-                    let sgDisplay = document.createElement('a')
-                    sgDisplay.innerHTML = `https://${typeOFLink == 'official-link' ? 'tools.eurolandir.com' : typeOFLink == 'asia-official-link' ? 'asia.tools.euroland.com' : 'gamma.euroland.com'}/tools/sharegraph/?s=${solutionID.value}&companycode=${companyCode.value}&lang=${languageArray[i]}`
-                    sgDisplay.setAttribute('href', sgDisplay.innerHTML)
-                    sgDisplay.setAttribute('target', '_blank')
-
-                    sgDisplay.className = 'one-line'
-
-
-                    displayContainer.appendChild(sgDisplay)
-
-                }
-            }else{
-            }
-
-
-            // for creating other Tools link
+            // for creating Tools link
             for(let i=0; i<linkArray.length; i++){
-            let title = document.createElement('p')
+            let title = document.createElement('div')
             title.innerHTML = toolArray[i]
             displayContainer.appendChild(title)
 
@@ -232,37 +453,32 @@
                     
                     let display = document.createElement('a')
                     
+
+                    toolArray[i] == 'SG' 
+                    ? 
+                    display.innerHTML = `https://${typeOFLink == 'official-link' ? 'tools.eurolandir.com' : typeOFLink == 'asia-official-link' ? 'asia.tools.euroland.com' : 'gamma.euroland.com'}/tools/sharegraph/?s=${solutionID.value}&companycode=${companyCode.value}&lang=${languageArray[x]}`
+                    :
                     display.innerHTML = `https://${typeOFLink == 'official-link' ? 'tools.eurolandir.com' : typeOFLink == 'asia-official-link' ? 'asia.tools.euroland.com' : 'gamma.euroland.com'}/tools/${linkArray[i]}/?companycode=${companyCode.value}${version.value ? `&v=${version.value}` : ''}&lang=${languageArray[x]}`
-                    display.setAttribute('href', display.innerHTML)
+                    
+                    //we used .replaceAll because without it, the url will translate & as &amp; in browser
+                    let ampFilter = display.innerHTML.replaceAll('&amp;', '&')
+
+                    display.setAttribute('href', ampFilter)
                     display.setAttribute('target', '_blank')
                     displayContainer.appendChild(display)
 
                     display.id = toolArray[i] 
                     display.className = 'one-line'
                   
-                }
-            
-       
+                }      
     }
         }else{
             alert('Must input company code')
-        }
-
-       
-        
-    
+        }  
     }
 
     button.addEventListener('click', generateLink)
-
-
-
-
-    
-
-
 </script>
-
 </html>
 
 

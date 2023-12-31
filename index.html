@@ -436,13 +436,15 @@
         // to clear display container for every click
         displayContainer.innerHTML = ''
 
-        //display div of link type (test, official, asia-official)
-        let linkType = document.createElement('div')
-        linkType.innerHTML = typeOFLink
-        linkType.setAttribute('class', 'link-title')
-        displayContainer.appendChild(linkType)
+     
 
         if(companyCode.value){
+
+            //display div of link type (test, official, asia-official)
+            let linkType = document.createElement('div')
+            linkType.innerHTML = typeOFLink
+            linkType.setAttribute('class', 'link-title')
+            displayContainer.appendChild(linkType)
 
             // for creating Tools link
             for(let i=0; i<linkArray.length; i++){
@@ -477,6 +479,9 @@
         }else{
             alert('Must input company code')
         }  
+
+        window.scrollTo(0, document.body.scrollHeight);
+
     }
 
     button.addEventListener('click', generateLink)
